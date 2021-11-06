@@ -1,0 +1,18 @@
+
+---
+- hosts: localhost
+  gather_facts: false
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: Provision instance
+      ec2:
+        aws_access_key: "{{ aws_access_key }}"
+        aws_secret_key: "{{ aws_secret_key }}"
+        key_name: ansible-keypair
+        instance_type: t2.micro
+        image: ami-0d382e80be7ffdae5
+        wait: yes
+        count: 1
+        region: us-west-1
